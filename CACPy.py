@@ -3,7 +3,7 @@
 LIST_SERVERS_URL = "https://panel.cloudatcost.com/api/v1/listservers.php"
 LIST_TEMPLATES_URL = "https://panel.cloudatcost.com/api/v1/listtemplates.php"
 LIST_TASKS_URL = "https://panel.cloudatcost.com/api/v1/listtasks.php"
-POWER_OPERATIONS_URL = "https://panel.cloudatcost.com/api/v1/poweropp.php"
+POWER_OPERATIONS_URL = "https://panel.cloudatcost.com/api/v1/powerop.php"
 CONSOLE_URL = "https://panel.cloudatcost.com/api/v1/console.php"
 
 import requests
