@@ -6,9 +6,7 @@ LIST_TASKS_URL = "https://panel.cloudatcost.com/api/v1/listtasks.php"
 POWER_OPERATIONS_URL = "https://panel.cloudatcost.com/api/v1/poweropp.php"
 CONSOLE_URL = "https://panel.cloudatcost.com/api/v1/console.php"
 
-from urllib2 import urlopen
-from urllib import urlencode
-import json
+import requests
 
 class CACPy:
 	"""Base class for making requests to the cloud at cost API."""
@@ -17,41 +15,28 @@ class CACPy:
 		self.email = email
 		self.api_key = api_key
 
-	def _make_request(self,base_url,options=dict(),type="GET"):
-		url = base_url
-		data = dict()
+	def _make_request(self,url,options=dict(),type="GET"):
+		data = {
+			'key':		self.api_key,
+			'login':	self.email
+		}
 
-		if type == "GET":
-			url += "?key=" + str(self.api_key) + "&login=" + str(self.email)
-
-			for key in options:
-				url += "&" + str(key) + "=" + str(options[key])
-		elif type == "POST":
-			data = {
-				'key':		self.api_key,
-				'login':	self.email
-			}
-			for key in options:
-				data[key] = options[key]
-		else:
-			raise Exception("InvalidRequestType: " + str(type))
+		for key in options:
+			data[key] = options[key]
 
 		print "URL: " + str(url)
 		print "Data: " 
 		print data
 
-		try:
-			ret = urlopen(url,urlencode(data))
-		except:
-			print "Status: " + ret['status']
-			print "Error Code: " + ret['error']
-			print "Description: " + ret['error_description']
+		ret = None
+		if type == "GET":
+			ret = requests.get(url,params=data)
+		elif type == "POST":
+			ret = requests.post(url,data=data)
+		else:
+			raise Exception("InvalidRequestType: " + str(type))
 
-		if str(ret.getcode()) != "200":
-			raise Exception("Bad return value: " + str(ret))
-
-		ret_data = ret.read()
-		return json.loads(ret_data)
+		return ret.json()
 
 	def _commit_power_operation(self,server_id,operation):
 		options = {'sid': server_id,'action':operation}
@@ -59,12 +44,10 @@ class CACPy:
 
 	def get_server_info(self):
 		jdata = self._make_request(LIST_SERVERS_URL)
-
 		return jdata['data']
 
 	def get_template_info(self):
 		jdata = self._make_request(LIST_TEMPLATES_URL)
-
 		return jdata['data']
 
 	def get_task_info(self):
@@ -73,3 +56,14 @@ class CACPy:
 
 	def power_on_server(self,server_id):
 		return self._commit_power_operation(server_id,'poweron')
+
+	def power_off_server(self,server_id):
+		return self._commit_power_operation(server_id,'poweroff')
+
+	def reset_server(self,server_id):
+		return self._commit_power_operation(server_id,'reset')
+
+	def get_console_url(self,server_id):
+		options = {'sid': server_id}
+		ret_data = self._make_request(CONSOLE_URL,options=options,type="POST")
+		return ret_data['console']
