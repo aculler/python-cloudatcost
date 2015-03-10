@@ -8,6 +8,7 @@ python-cloudatcost
 usage
 -----
 ::
+
     from cacpy import CACPy
     cac = CACPy('email@example.com','API_KEY')
     srv_info = cac.get_server_info()
