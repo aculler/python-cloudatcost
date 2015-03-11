@@ -15,7 +15,7 @@ CONSOLE_URL = "/console.php"
 class CACPy:
     """Base class for making requests to the cloud at cost API."""
 
-    def __init__(self, mail, api_key):
+    def __init__(self, email, api_key):
         """Return a CACPy object.
 
         Required Arguments:
