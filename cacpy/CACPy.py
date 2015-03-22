@@ -64,8 +64,7 @@ class CACPy:
         portion of the JSON as documented here:
         https://github.com/cloudatcost/api#list-servers
         """
-        jdata = self._make_request(LIST_SERVERS_URL)
-        return jdata['data']
+        return self._make_request(LIST_SERVERS_URL)
 
     def get_template_info(self):
         """Return an array of dictionaries containing template information.
@@ -74,8 +73,7 @@ class CACPy:
         portion of the JSON as documented here:
         https://github.com/cloudatcost/api#list-templates
         """
-        jdata = self._make_request(LIST_TEMPLATES_URL)
-        return jdata['data']
+        return self._make_request(LIST_TEMPLATES_URL)
 
     def get_task_info(self):
         """Return an array of dictionaries containing task information.
@@ -84,8 +82,7 @@ class CACPy:
         portion of the JSON as documented here:
         https://github.com/cloudatcost/api#list-tasks
         """
-        jdata = self._make_request(LIST_TASKS_URL)
-        return jdata['data']
+        return self._make_request(LIST_TASKS_URL)
 
     def power_on_server(self, server_id):
         """Request that the server specified be powered on.
