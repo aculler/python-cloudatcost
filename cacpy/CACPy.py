@@ -10,6 +10,8 @@ LIST_TEMPLATES_URL = "/listtemplates.php"
 LIST_TASKS_URL = "/listtasks.php"
 POWER_OPERATIONS_URL = "/powerop.php"
 CONSOLE_URL = "/console.php"
+RENAME_SERVER_URL = "/renameserver.php"
+REVERSE_DNS_URL = "/rdns.php"
 
 
 class CACPy:
@@ -115,13 +117,55 @@ class CACPy:
 
         Required Arguments:
         server_id - The unique ID associated with the server to power off.
-                    Specified by the 'sid' key returned by the get_server_info
+                    Specified by the 'sid' key returned by get_server_info()
 
         The return value will be a dictionary that will contain keys consistent
         with the JSON as documented here:
         https://github.com/cloudatcost/api#power-operations
         """
         return self._commit_power_operation(server_id, 'reset')
+
+    def rename_server(self, server_id, new_name):
+        """Modify the name label of the specified server.
+
+        Required Arguments:
+        server_id - The unique ID associated with the server to change the
+                    label of. Specified by the 'sid' key returned by
+                    get_server_info()
+        new_name - String to set as the name label.
+
+        The return value will be a dictionary that will contain keys consistent
+        with the JSON as documented here:
+        https://github.com/cloudatcost/api#rename-server
+        """
+        options = {
+            'sid': server_id,
+            'name': new_name
+        }
+        return self._make_request(RENAME_SERVER_URL,
+                                  options=options,
+                                  type="POST")
+
+    def change_hostname(self, server_id, new_hostname):
+        """Modify the hostname of the specified server.
+
+        Required Arguments:
+        server_id - The unique ID associated with the server to change the
+                    hostname of. Specified by the 'sid' key returned by
+                    get_server_info()
+        new_hostname - Fully qualified domain name to set for the host
+
+        The return value will be a dictionary that will contain keys consistent
+        with the JSON as documented here:
+        https://github.com/cloudatcost/api#modify-reverse-dns
+        """
+        options = {
+            'sid': server_id,
+            'hostname': new_hostname
+        }
+        return self._make_request(REVERSE_DNS_URL,
+                                  options=options,
+                                  type="POST")
 
     def get_console_url(self, server_id):
         """Return the URL to the web console for the server specified.
