@@ -19,7 +19,7 @@ setup(
     packages = ['cacpy'],
     long_description = long_desc,
     classifiers = [
-        "Indented Audience :: Developers",
+        "Intended Audience :: Developers",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Programming Language :: Python :: 2.7",
         "License :: OSI Approved :: MIT License",
