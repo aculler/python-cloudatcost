@@ -14,11 +14,12 @@ RENAME_SERVER_URL = "/renameserver.php"
 REVERSE_DNS_URL = "/rdns.php"
 RUN_MODE_URL = "/runmode.php"
 
-#CloudPRO functions:
+# CloudPRO functions:
 
 SERVER_BUILD_URL = "/cloudpro/build.php"
 SERVER_DELETE_URL = "/cloudpro/delete.php"
 RESOURCE_URL = "/cloudpro/resources.php"
+
 
 class CACPy:
     """Base class for making requests to the cloud at cost API.
@@ -232,7 +233,7 @@ class CACPy:
                                   options=options,
                                   type="POST")
 
-     def server_delete(self, server_id):
+    def server_delete(self, server_id):
         """Delete a cloudPRO server and free associated resources.
 
         Required Arguments:
@@ -247,7 +248,7 @@ class CACPy:
                                   options=options,
                                   type="POST")
 
-      def get_resources(self):
+    def get_resources(self):
         """Returns information about CloudPRO resource usage.
         """
 
