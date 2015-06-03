@@ -8,7 +8,7 @@ with open(os.path.join(here, 'README.rst')) as f:
 
 setup(
     name = "cacpy",
-    version = "0.5",
+    version = "0.5.1",
     author = "Andy Culler",
     author_email = "adc4392@gmail.com",
     description = ("A python wrapper for the cloudatcost.com API - "
