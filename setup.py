@@ -1,9 +1,9 @@
 import os
 from setuptools import setup
 
-here = path.abspath(path.dirname(__file__))
+here = os.path.abspath(os.path.dirname(__file__))
 
-with open(path.join(here, 'README.rst'), encoding = 'utf-8') as f:
+with open(os.path.join(here, 'README.rst')) as f:
     long_desc = f.read()
 
 setup(
