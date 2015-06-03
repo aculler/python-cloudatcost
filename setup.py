@@ -16,7 +16,7 @@ setup(
     license = "MIT",
     keywords = "wrapper for cloud at cost api",
     url = "https://github.com/adc4392/python-cloudatcost",
-    download_url = "https://github.com/adc4392/python-cloudatcost/tarball/0.5"
+    download_url = "https://github.com/adc4392/python-cloudatcost/tarball/0.5",
     packages = ['cacpy'],
     long_description = long_desc,
     classifiers = [
