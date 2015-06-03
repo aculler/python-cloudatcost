@@ -7,7 +7,7 @@ with open(path.join(here, 'README.rst'), encoding = 'utf-8') as f:
     long_desc = f.read()
 
 setup(
-    name = "python-cloudatcost",
+    name = "cacpy",
     version = "0.5",
     author = "Andy Culler",
     author_email = "adc4392@gmail.com",
@@ -16,6 +16,7 @@ setup(
     license = "MIT",
     keywords = "wrapper for cloud at cost api",
     url = "https://github.com/adc4392/python-cloudatcost",
+    download_url = "https://github.com/adc4392/python-cloudatcost/tarball/0.5"
     packages = ['cacpy'],
     long_description = long_desc,
     classifiers = [
