@@ -253,4 +253,4 @@ class CACPy:
         """
 
         return self._make_request(RESOURCE_URL,
-                                  type="POST")
+                                  type="GET")
